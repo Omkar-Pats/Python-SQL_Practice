@@ -1,0 +1,71 @@
+1.Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+You can return the answer in any order.
+Ans. class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        two_sum = []
+        for x in range(len(nums)):
+            for y in range(x+1, len(nums)):
+                if nums[x] + nums[y] == target:
+                    two_sum.append(x)
+                    two_sum.append(y)
+        return two_sum
+
+2.Given a signed 32-bit integer x, return x with its digits reversed. 
+If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
+Ans. class Solution:
+    def reverse(self, x: int) -> int:
+        max_range = 2**31 -1
+        min_range = -2**31
+        sign = -1
+        num = int(str(x)[::-1])
+        if int(num) > max_range or int(num) < min_range:
+            return 0
+        else:
+            return num
+
+3.You are the manager of a supermarket.
+You have a list of  items together with their prices that consumers bought on a particular day.
+Your task is to print each item_name and net_price in order of its first occurrence.
+
+item_name = Name of the item.
+net_price = Quantity of the item sold multiplied by the price of each item.
+Ans.   from collections import OrderedDict
+	n = int(input())
+	d = OrderedDict()
+	for x in range(n):
+    		item = input().split(" ")
+    		price = int(item[-1])
+    		item_name = " ".join(item[:-1])
+    	if d.get(item_name):
+        	d[item_name] += price
+    	else:
+        	d[item_name] = price
+
+	for keys,values in d.items():
+    		print(keys + " " + str(values))
+
+4.Students of District College have a subscription to English and French newspapers. 
+Some students have subscribed to only the English newspaper, some have subscribed to only the French newspaper, 
+and some have subscribed to both newspapers.You are given two sets of student roll numbers. 
+One set has subscribed to the English newspaper, and one set has subscribed to the French newspaper. 
+Your task is to find the total number of students who have subscribed to only English newspapers.
+
+a = int(input())
+eng = list(map(int, input().split()))
+c = int(input())
+fre = list(map(int, input().split()))
+eng_set = set(eng)
+fre_set = set(fre)
+count = 0
+for x in eng_set:
+    if x not in fre_set:
+        count += 1
+
+print(count)
+
+5.Query all attributes of every Japanese city in the CITY table. The COUNTRYCODE for Japan is JPN.
+Ans SELECT * FROM CITY WHERE COUNTRYCODE='JPN';
+
+6.Write a query that prints a list of employee names (i.e.: the name attribute) from the Employee table in alphabetical order.
+Ans SELECT name FROM Employee ORDER BY name ASC;
